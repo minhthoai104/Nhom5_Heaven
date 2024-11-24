@@ -171,6 +171,38 @@
             "image": "women-classic-7.jpg"
         }
     ],
+    "PROMOTIONS":[
+        {
+            "procode" : "CT01",
+            "promotionName" : "Khuyến mãi tháng 11",
+            "begin" : "2024-11-01",
+            "end" : "2024-11-30",
+            "promodes" : "Giảm 15% cho mỗi hóa đơn từ 500K",
+            "condition" : "500000",
+            "classify" : "0",
+            "amount" : "15"
+        },
+        {
+            "procode" : "CT02",
+            "promotionName" : "Tháng 7 nhộn nhịp",
+            "begin" : "2024-07-01",
+            "end" : "2024-07-31",
+            "promodes" : "Đón chào mùa hè cùng với những ưu đãi hời từ Heaven",
+            "condition" : "200000",
+            "classify" : "1",
+            "amount" : "35000"
+        },
+        {
+            "procode" : "CT03",
+            "promotionName" : "Giảm Giá Dành Cho Khách Hàng Mới",
+            "begin" : "2024-01-01",
+            "end" : "2026-01-01",
+            "promodes" : "Chương trình khuyến mãi có ưu đãi dành cho khách hàng lần đầu mua sắm ở Heaven",
+            "condition" : "0",
+            "classify" : "0",
+            "amount" : "20"
+        }
+    ],
     "ACCOUNTS": [],
     "ORDERS": []
 }

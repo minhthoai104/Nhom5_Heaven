@@ -73,6 +73,12 @@
                             Đơn Hàng
                         </a>
                     </li>
+                    <li class="nav-item" id="s_promotion">
+                        <a href="#" class="nav-link text-dark font-italic bg-light">
+                            <i class="fa fa-ticket-alt mr-1 text-primary fa-fw"></i>
+                            Chương Trình Khuyến Mãi
+                        </a>
+                    </li>
                 </ul>
             </div>
             <!-- End vertical navbar -->
@@ -114,6 +120,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="category">Danh Mục</label>
                                     <select class="form-control" id="category">
+                                        <option value="" disabled selected>Chọn Danh Mục</option>
                                         <option value="0">Giày Nam</option>
                                         <option value="1">Giày Nữ</option>
                                         <option value="2">Áo</option>
@@ -183,7 +190,7 @@
                     </div>
                 </div>
                 <p id="genJSON"></p>
-
+                
                 <!-- User Manager -->
                 <div class="user-manager" id="user-manager">
                     <div class="text-center mt-2 mb-3">
@@ -234,6 +241,96 @@
                         </table>
                     </div>
                 </div>
+
+                <!--Promotion Manager-->
+                <div class="promo-manager" id="promo-manager">
+                    <div class="notification offset-9">
+                        <div class="notification-content" id="notifi-promo">
+                            <p id="notifi_content_promo"></p>
+                        </div>
+                    </div>
+                    <div class="text-center mt-2 mb-3">
+                        <h4>Quản Lý Chương Trình Khuyến Mãi</h4>
+                    </div>
+                    <div class="action mb-4">
+                        <div class="frms container" id="form_id_promo">
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="promo_code">Mã Chương Trình Khuyến Mãi</label>
+                                    <input type="text" class="form-control" id="promo_code" disabled />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="classify">Phân Loại</label>
+                                    <select class="form-control" id="classify">
+                                        <option value="" disabled selected>Chọn Phân Loại</option>
+                                        <option value="0">Phần Trăm</option>
+                                        <option value="1">Tiền</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="name_promo">Tên Chương Trình Khuyến Mãi</label>
+                                    <input type="text" class="form-control" id="name_promo" placeholder="Name">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="description">Mô Tả</label>
+                                    <input type="text" class="form-control" id="description" placeholder="Description">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="condition">Điều Kiện</label>
+                                    <input type="text" class="form-control" id="condition" placeholder="Condition">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="amount_promo">Giá trị giảm</label>
+                                    <input type="number" class="form-control" id="amount_promo" placeholder="Amount">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="start">Ngày Bắt Đầu</label>
+                                    <input type="date" class="form-control" id="start" placeholder="Start">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="end">Ngày Kết Thúc</label>
+                                    <input type="date" class="form-control" id="end" placeholder="End">
+                                </div>
+                            </div>
+                        
+                            <div class="text-center" id="actbutton">
+                                <button type="button" class="btn btn-outline-info btn-sm" id="update_promo"
+                                    style="display: none;">Cập Nhật Chương Trình Khuyến Mãi</button>
+                                <button type="button" class="btn btn-outline-success btn-enhanced" id="add_new_promo">Thêm CTKM</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab container">
+                        <!-- Search form -->
+                        <div class="d-flex offset-8 col-md-4 mb-3">
+                            <input type="text" name="search" id="search_promo" class="search"
+                                placeholder="Nhập Tên Chương Trình Khuyến Mãi...">
+                            <i class="fab fa-searchengin fa-lg"></i>
+                        </div>
+                        <table class="table table-bordered">
+                            <thead class="thead-dark text-center">
+                                <tr>
+                                    <th scope="col">Mã CTKM</th>
+                                    <th scope="col">Tên CTKM</th>
+                                    <th scope="col">Phân Loại</th>
+                                    <th scope="col">Giảm</th>
+                                    <th scope="col">Mô Tả</th>
+                                    <th scope="col">Điều Kiện</th>
+                                    <th scope="col">Ngày Bắt Đầu</th>
+                                    <th scope="col">Ngày Kết Thúc</th>
+                                    <th scope="col">Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="promo_tbody" class="thead-light text-center">
+                                <!-- Insert Data -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <p id="genJSON"></p>
+
             </div>
         </div>
     </div>
@@ -293,6 +390,26 @@
                             </tr>
                         </tfoot>
                     </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ProMo Modal -->
+    <div class="modal fade" id="promoModal" tabindex="-1" role="dialog" aria-labelledby="promoModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="promoModalLabel">Chi Tiết Khuyến Mãi</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center" id="promo-detail">
+                    <!-- Data -->
+                </div>
+                <div class="modal-footer">
                 </div>
             </div>
         </div>
